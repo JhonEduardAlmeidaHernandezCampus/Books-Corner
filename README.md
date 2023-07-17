@@ -1,8 +1,8 @@
-# SISTEMA DE GESTIÓN DE BIBLIOTECA
+# **Books Corner**
 
 
 
-### `INTRODUCCIÓN`
+#### `INTRODUCCIÓN`
 
 Un elemento clave en el funcionamiento efectivo de una biblioteca es un sistema de gestión de inventarios que permita un control preciso de los libros disponibles, las reservas y los préstamos.
 
@@ -16,20 +16,32 @@ El sistema de gestión de Inventarios de una biblioteca es una solución integra
 
 
 
-### `PLANTEAMIENTO DEL PROBLEMA`
+#### `PLANTEAMIENTO DEL PROBLEMA`
 
 Las bibliotecas desempeñan un papel fundamental en la difusión del conocimiento y el acceso a la información, sin embargo, a medida que las colecciones bibliográficas crecen, surge la necesidad de implementar un sistema de gestión de inventarios eficiente que aborde los desafíos existentes.
 
 1. `Descontrol en el inventario:` Sin un sistema de gestión centralizado, la biblioteca puede enfrentar dificultades para realizar un seguimiento preciso de los libros disponibles.
 
-   
+  
 
 2. `Ineficiencia en los préstamos:` En ausencia de un sistema adecuado, los préstamos de libros pueden volverse confusos, La falta de un registro actualizado de los libros prestados puede llevar a situaciones en las que los usuarios no puedan acceder a los libros.
 
-   
+  
 
 3. `Dificultad para gestionar reservas:` Si no hay un sistema de reservas integrado, los usuarios pueden enfrentar obstáculos para reservar libros que están actualmente prestados.
 
-   
+  
 
 4. `Limitaciones en la generación de informes:` Sin un sistema de gestión de inventarios eficiente, la biblioteca puede enfrentar desafíos para generar informes y estadísticas precisas sobre el uso de los recursos, la demanda de libros específicos o el estado general del inventario.
+
+
+
+#### OBJETIVO GENERAL
+
+Resaltar la importancia de establecer un sistema de gestión de inventarios eficiente en una biblioteca, con el propósito de optimizar y agilizar el flujo de libros, mejorar la experiencia de los usuarios y asegurar un control preciso y actualizado del inventario bibliográfico. Este sistema integral tiene como objetivo principal facilitar y mejorar el proceso de préstamo de libros, así como garantizar un acceso equitativo a los recursos bibliográficos a través de la implementación de reservas y notificaciones para los usuarios. Además, este sistema busca minimizar la pérdida o extravío de libros al mantener un registro exhaustivo de los libros prestados, las fechas de vencimiento y las multas correspondientes en caso de retrasos, lo que contribuye a un control efectivo de los recursos y a la gestión eficiente de la biblioteca en su conjunto.
+
+
+
+#### DIAGRAMA DE ENTIDAD RELACIÓN
+
+![Diagrama Entidad-Relación](./assets/diagramas/diagrama_entidad_relacion.png)
