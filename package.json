@@ -1,0 +1,35 @@
+{
+  "name": "books-corner",
+  "version": "1.0.0",
+  "description": "Un elemento clave en el funcionamiento efectivo de una biblioteca es un sistema de gestión de inventarios que permita un control preciso de los libros disponibles, las reservas y los préstamos.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "tsc": "tsc -w",
+    "dev": "nodemon --quiet app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JhonEduardAlmeidaHernandezCampus/Books-Corner.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "LTS",
+  "bugs": {
+    "url": "https://github.com/JhonEduardAlmeidaHernandezCampus/Books-Corner/issues"
+  },
+  "homepage": "https://github.com/JhonEduardAlmeidaHernandezCampus/Books-Corner#readme",
+  "devDependencies": {
+    "class-transformer": "0.5.1",
+    "class-validator": "0.14.0",
+    "dotenv": "16.3.1",
+    "express": "4.18.2",
+    "jose": "4.14.4",
+    "mysql2": "3.5.2",
+    "nanoid": "4.0.2",
+    "nodemon": "3.0.1",
+    "reflect-metadata": "0.1.13",
+    "typescript": "5.1.6"
+  }
+}
