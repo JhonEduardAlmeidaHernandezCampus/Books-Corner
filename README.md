@@ -30,7 +30,7 @@ Las bibliotecas desempeñan un papel fundamental en la difusión del conocimient
 
 3. `Dificultad para gestionar reservas:` Si no hay un sistema de reservas integrado, los usuarios pueden enfrentar obstáculos para reservar libros que están actualmente prestados.
 
-  
+   
 
 4. `Limitaciones en la generación de informes:` Sin un sistema de gestión de inventarios eficiente, la biblioteca puede enfrentar desafíos para generar informes y estadísticas precisas sobre el uso de los recursos, la demanda de libros específicos o el estado general del inventario.
 
@@ -42,6 +42,61 @@ Resaltar la importancia de establecer un sistema de gestión de inventarios efic
 
 
 
+#### OBJETIVOS ESPECIFICOS
+
+1. Implementar un sistema de gestión de inventarios que permita mantener un registro actualizado de todos los libros disponibles en la biblioteca, incluyendo información detallada sobre cada libro, como título, autor, descripción y categoría.
+
+
+
+2. Establecer un sistema de alertas para el personal de la biblioteca que les notifique sobre la cantidad de copias disponibles para cada libro y cuándo se están agotando.
+
+
+
+3. Proporcionar una interfaz de administración para que el personal de la biblioteca pueda agregar, modificar o eliminar registros de libros, actualizar el estado de los préstamos y reservas, y generar informes sobre el uso y la disponibilidad de los recursos bibliográficos.
+
+
+
+4. Realizar pruebas exhaustivas del sistema antes de su implementación completa para asegurar su funcionalidad y confiabilidad, corrigiendo posibles errores o problemas identificados durante el proceso de prueba.
+
+
+
+##### CONSULTAS
+
+1.  Consultar la cantidad de clientes que hay en la base de datos.
+
+2. Consultar el registro de usuarios que tengan un "Penalthy Cost".
+
+3.  Consultar la cantidad de usuarios que llevaron un libro en especifico.
+
+4. Consultar el registro de usuarios que están en estado de "Overdue".
+
+5.  Consultar la cantidad que hay en inventario respecto a ese libro.
+
+6. Consultar si en el inventario hay algún registro con el estado de "Out of Stock".
+
+7. Consultar que clientes llevaron libros con la categoría de "Mystery".
+
+8. Consultar todos los libros disponibles en la biblioteca junto con su categoría y cantidad en inventario.
+
+9. Consultar los detalles de un libro específico, incluyendo su descripción y autor.
+
+10. Consultar todos los préstamos activos de un usuario en especifico.
+
+11. Consultar la cantidad total de multas acumuladas por un usuario específico.
+
+12. Consultar las categorías de libros junto con la cantidad total de libros disponibles en cada categoría.
+
+    
+
+
+
 #### DIAGRAMA DE ENTIDAD RELACIÓN
 
-![Diagrama Entidad-Relación](./assets/diagramas/diagrama_entidad_relacion.png)
+![Diagrama Entidad-Relación](./assets/img/diagrama_entidad_relacion.png)
+
+
+
+
+#### BASE DE DATOS
+
+![IMG Base de datos](./assets/img/database.png)
