@@ -55,4 +55,20 @@ storageAdministrator.put("/:id_User", administrator, (req, res) => {
     )
 })
 
+storageAdministrator.delete("/:id_User", (req, res) => {
+    con.query(
+        `DELETE FROM administrator WHERE id_User = ?`,
+        req.params.id_User,
+
+        (error, data, fill) => {
+            if (error) {
+                console.log(error);
+                res.status(400).send("Error al eliminar el registro del administrador")
+            } else {
+                res.send("Registro eliminado con exito")
+            }
+        }
+    )
+})
+
 export default storageAdministrator;
