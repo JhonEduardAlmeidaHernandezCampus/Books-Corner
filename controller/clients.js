@@ -24,7 +24,7 @@ __decorate([
         return Math.floor(value);
     else
         throw { status: 400, message: `Error en los parametros` }; }, { toClassOnly: true }),
-    __metadata("design:type", String)
+    __metadata("design:type", Number)
 ], dtoClients.prototype, "id_Client", void 0);
 __decorate([
     Expose({ name: 'ID_Admin' }),
@@ -32,7 +32,7 @@ __decorate([
         return Math.floor(value);
     else
         throw { status: 400, message: `Error en los parametros` }; }, { toClassOnly: true }),
-    __metadata("design:type", String)
+    __metadata("design:type", Number)
 ], dtoClients.prototype, "id_User_fk", void 0);
 __decorate([
     Expose({ name: 'Name' }),
