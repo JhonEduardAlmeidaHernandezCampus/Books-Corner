@@ -36,4 +36,16 @@ storageConsultaInventory.get("/status/", (req, res) => {
     )
 })
 
+// http://127.10.10.10:5010/inventory/all_books/
+storageConsultaInventory.get("/all_books/", (req, res) => {
+    con.query(
+        `SELECT id_Inventory, id_Book, name_Book, description, name_Author, name_Categorie, id_Inventory, quantity_Book FROM books_description INNER JOIN categories_books ON books_description.id_Categorie_fk = categories_books.id_Categorie INNER JOIN inventory ON books_description.id_Book = inventory.id_Book_fk`,
+        req.params.id_Book, 
+
+        (error, data, fill) => {
+            res.send(data)
+        }
+    )
+})
+
 export default storageConsultaInventory;
