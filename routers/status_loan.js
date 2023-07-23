@@ -3,6 +3,7 @@ import { Router } from 'express';
 import mysql from 'mysql2';
 import status_loan from '../middleware/middlewareStatusLoan.js';
 import validarId from '../middleware/validarParams.js';
+import generarTokenData from '../middleware/tokens/generarTokenData.js';
 
 dotenv.config();
 let storageStatus_Loan = Router();
@@ -24,7 +25,7 @@ storageStatus_Loan.get("/", (req, res) => {
     )
 })
 
-storageStatus_Loan.post("/", status_loan, (req, res) => {
+storageStatus_Loan.post("/", generarTokenData, status_loan, (req, res) => {
     con.query(
         `INSERT INTO status_loan SET ?`,
         req.body,
@@ -40,7 +41,7 @@ storageStatus_Loan.post("/", status_loan, (req, res) => {
     )
 })
 
-storageStatus_Loan.put("/:id", validarId, status_loan, (req, res) => {
+storageStatus_Loan.put("/:id", generarTokenData, validarId, status_loan, (req, res) => {
     con.query(
         `UPDATE status_loan SET ? WHERE id_Status = ?`,
         [req.body, req.params],
@@ -56,7 +57,7 @@ storageStatus_Loan.put("/:id", validarId, status_loan, (req, res) => {
     )
 })
 
-storageStatus_Loan.delete("/:id", validarId, (req, res) => {
+storageStatus_Loan.delete("/:id", generarTokenData, validarId, (req, res) => {
     con.query(
         `DELETE FROM status_loan WHERE id_Status = ?`,
         req.params,

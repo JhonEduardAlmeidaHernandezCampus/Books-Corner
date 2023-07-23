@@ -3,6 +3,7 @@ import { Router } from 'express';
 import mysql from 'mysql2';
 import categorie_book from '../middleware/middlewareCategorieBook.js';
 import validarId from '../middleware/validarParams.js';
+import generarTokenData from '../middleware/tokens/generarTokenData.js';
 
 dotenv.config();
 let storageCategoriesBooks = Router();
@@ -24,7 +25,7 @@ storageCategoriesBooks.get("/", (req, res) => {
     )
 })
 
-storageCategoriesBooks.post("/", categorie_book, (req, res) => {
+storageCategoriesBooks.post("/", generarTokenData, categorie_book, (req, res) => {
     con.query(
         `INSERT INTO categories_books SET ?`,
         req.body,
@@ -40,7 +41,7 @@ storageCategoriesBooks.post("/", categorie_book, (req, res) => {
     )
 })
 
-storageCategoriesBooks.put("/:id", validarId, categorie_book, (req, res) => {
+storageCategoriesBooks.put("/:id", generarTokenData, validarId, categorie_book, (req, res) => {
     con.query(
         `UPDATE categories_books SET ? WHERE id_Categorie = ?`,
         [req.body, req.params],
@@ -56,7 +57,7 @@ storageCategoriesBooks.put("/:id", validarId, categorie_book, (req, res) => {
     )
 })
 
-storageCategoriesBooks.delete("/:id", validarId, (req, res) => {
+storageCategoriesBooks.delete("/:id", generarTokenData, validarId, (req, res) => {
     con.query(
         `DELETE FROM categories_books WHERE id_Categorie = ?`,
         req.params,

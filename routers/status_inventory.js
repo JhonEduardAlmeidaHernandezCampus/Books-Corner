@@ -3,6 +3,7 @@ import { Router } from 'express';
 import mysql from 'mysql2';
 import status_inventory from '../middleware/middlewareStatusInventory.js';
 import validarId from '../middleware/validarParams.js';
+import generarTokenData from '../middleware/tokens/generarTokenData.js';
 
 dotenv.config();
 let storageStatusInventory = Router();
@@ -24,7 +25,7 @@ storageStatusInventory.get("/", (req, res) => {
     )
 })
 
-storageStatusInventory.post("/", status_inventory, (req, res) => {
+storageStatusInventory.post("/", generarTokenData, status_inventory, (req, res) => {
     con.query(
         `INSERT INTO status_inventory SET ?`,
         req.body,
@@ -40,7 +41,7 @@ storageStatusInventory.post("/", status_inventory, (req, res) => {
     )
 })
 
-storageStatusInventory.put("/:id", validarId, status_inventory, (req, res) => {
+storageStatusInventory.put("/:id", generarTokenData, validarId, status_inventory, (req, res) => {
     con.query(
         `UPDATE status_inventory SET ? WHERE id_Status = ?`,
         [req.body, req.params],
@@ -56,7 +57,7 @@ storageStatusInventory.put("/:id", validarId, status_inventory, (req, res) => {
     )
 })
 
-storageStatusInventory.delete("/:id", validarId, (req, res) => {
+storageStatusInventory.delete("/:id", generarTokenData, validarId, (req, res) => {
     con.query(
         `DELETE FROM status_inventory WHERE id_Status = ?`,
         req.params,

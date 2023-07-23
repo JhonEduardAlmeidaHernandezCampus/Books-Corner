@@ -3,6 +3,7 @@ import { Router } from 'express';
 import mysql from 'mysql2';
 import Client from '../middleware/middlewareClient.js';
 import validarId from '../middleware/validarParams.js';
+import generarTokenData from '../middleware/tokens/generarTokenData.js';
 
 dotenv.config();
 let storageClients = Router();
@@ -24,7 +25,7 @@ storageClients.get("/", (req, res) => {
     )
 })
 
-storageClients.post("/", Client, (req, res) => {
+storageClients.post("/", generarTokenData, Client, (req, res) => {
     con.query(
         `INSERT INTO clients SET ?`,
         req.body,
@@ -40,7 +41,7 @@ storageClients.post("/", Client, (req, res) => {
     )
 })
 
-storageClients.put("/:id", validarId, Client, (req, res) => {
+storageClients.put("/:id", generarTokenData, validarId, Client, (req, res) => {
     con.query(
         `UPDATE clients SET ? WHERE id_Client = ?`,
         [req.body, req.params],
@@ -56,7 +57,7 @@ storageClients.put("/:id", validarId, Client, (req, res) => {
     )
 })
 
-storageClients.delete("/:id", validarId, (req, res) => {
+storageClients.delete("/:id", generarTokenData, validarId, (req, res) => {
     con.query(
         `DELETE FROM Clients WHERE id_Client = ?`,
         req.params,

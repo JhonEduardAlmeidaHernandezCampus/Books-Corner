@@ -3,6 +3,7 @@ import { Router } from 'express';
 import mysql from 'mysql2';
 import loan from '../middleware/middlewareLoan.js';
 import validarId from '../middleware/validarParams.js';
+import generarTokenData from '../middleware/tokens/generarTokenData.js';
 
 dotenv.config();
 let storageLoan = Router();
@@ -24,7 +25,7 @@ storageLoan.get("/", (req, res) => {
     )
 })
 
-storageLoan.post("/", loan, (req, res) => {
+storageLoan.post("/", generarTokenData, loan, (req, res) => {
     con.query(
         `INSERT INTO loan SET ?`,
         req.body,
@@ -40,7 +41,7 @@ storageLoan.post("/", loan, (req, res) => {
     )
 })
 
-storageLoan.put("/:id", validarId, loan, (req, res) => {
+storageLoan.put("/:id", generarTokenData, validarId, loan, (req, res) => {
     con.query(
         `UPDATE loan SET ? WHERE id_Loan = ?`,
         [req.body, req.params],
@@ -56,7 +57,7 @@ storageLoan.put("/:id", validarId, loan, (req, res) => {
     )
 })
 
-storageLoan.delete("/:id", validarId, (req, res) => {
+storageLoan.delete("/:id", generarTokenData, validarId, (req, res) => {
     con.query(
         `DELETE FROM loan WHERE id_Loan = ?`,
         req.params,
