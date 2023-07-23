@@ -24,4 +24,16 @@ storageConsultaInventory.get("/cantidad/:id_Book", (req, res) => {
     )
 })
 
+// http://127.10.10.10:5010/inventory/status/
+storageConsultaInventory.get("/status/", (req, res) => {
+    con.query(
+        `SELECT id_Inventory, id_Book, name_Book, description, name_Author, name_Status FROM inventory INNER JOIN books_description ON inventory.id_Book_fk = books_description.id_Book INNER JOIN status_inventory ON inventory.id_Status_Inventory = status_inventory.id_Status WHERE id_Status = 2`,
+        req.params.id_Book, 
+
+        (error, data, fill) => {
+            res.send(data)
+        }
+    )
+})
+
 export default storageConsultaInventory;
