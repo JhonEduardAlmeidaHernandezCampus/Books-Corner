@@ -2,6 +2,7 @@ import dotenv from 'dotenv';
 import { Router } from 'express';
 import mysql from 'mysql2';
 import categorie_book from '../middleware/middlewareCategorieBook.js';
+import validarId from '../middleware/validarParams.js';
 
 dotenv.config();
 let storageCategoriesBooks = Router();
@@ -39,10 +40,10 @@ storageCategoriesBooks.post("/", categorie_book, (req, res) => {
     )
 })
 
-storageCategoriesBooks.put("/:id_Categorie", categorie_book, (req, res) => {
+storageCategoriesBooks.put("/:id", validarId, categorie_book, (req, res) => {
     con.query(
         `UPDATE categories_books SET ? WHERE id_Categorie = ?`,
-        [req.body, req.params.id_Categorie],
+        [req.body, req.params],
 
         (error, data, fill) => {
             if (error) {
@@ -55,10 +56,10 @@ storageCategoriesBooks.put("/:id_Categorie", categorie_book, (req, res) => {
     )
 })
 
-storageCategoriesBooks.delete("/:id_Categorie", (req, res) => {
+storageCategoriesBooks.delete("/:id", validarId, (req, res) => {
     con.query(
         `DELETE FROM categories_books WHERE id_Categorie = ?`,
-        req.params.id_Categorie,
+        req.params,
 
         (error, data, fill) => {
             if (error) {

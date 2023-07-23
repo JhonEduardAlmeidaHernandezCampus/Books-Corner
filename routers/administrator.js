@@ -2,6 +2,7 @@ import dotenv from 'dotenv';
 import { Router } from 'express';
 import mysql from 'mysql2';
 import administrator from '../middleware/middlewareAdministrator.js';
+import validarId from '../middleware/validarParams.js';
 
 dotenv.config();
 let storageAdministrator = Router();
@@ -39,10 +40,10 @@ storageAdministrator.post("/", administrator, (req, res) => {
     )
 })
 
-storageAdministrator.put("/:id_User", administrator, (req, res) => {
+storageAdministrator.put("/:id", administrator, validarId, (req, res) => {
     con.query(
         `UPDATE administrator SET ? WHERE id_User = ?`,
-        [req.body, req.params.id_User],
+        [req.body, req.params],
 
         (error, data, fill) => {
             if (error) {
@@ -55,10 +56,10 @@ storageAdministrator.put("/:id_User", administrator, (req, res) => {
     )
 })
 
-storageAdministrator.delete("/:id_User", (req, res) => {
+storageAdministrator.delete("/:id", validarId, (req, res) => {
     con.query(
         `DELETE FROM administrator WHERE id_User = ?`,
-        req.params.id_User,
+        req.params,
 
         (error, data, fill) => {
             if (error) {

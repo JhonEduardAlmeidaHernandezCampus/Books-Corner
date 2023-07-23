@@ -2,6 +2,7 @@ import dotenv from 'dotenv';
 import { Router } from 'express';
 import mysql from 'mysql2';
 import inventory from '../middleware/middlewareInventory.js';
+import validarId from '../middleware/validarParams.js';
 
 dotenv.config();
 let storageInventory = Router();
@@ -39,10 +40,10 @@ storageInventory.post("/", inventory, (req, res) => {
     )
 })
 
-storageInventory.put("/:id_Inventory", inventory, (req, res) => {
+storageInventory.put("/:id", validarId, inventory, (req, res) => {
     con.query(
         `UPDATE inventory SET ? WHERE id_Inventory = ?`,
-        [req.body, req.params.id_Inventory],
+        [req.body, req.params],
 
         (error, data, fill) => {
             if (error) {
@@ -55,10 +56,10 @@ storageInventory.put("/:id_Inventory", inventory, (req, res) => {
     )
 })
 
-storageInventory.delete("/:id_Inventory", (req, res) => {
+storageInventory.delete("/:id", validarId, (req, res) => {
     con.query(
         `DELETE FROM inventory WHERE id_Inventory = ?`,
-        req.params.id_Inventory,
+        req.params,
 
         (error, data, fill) => {
             if (error) {

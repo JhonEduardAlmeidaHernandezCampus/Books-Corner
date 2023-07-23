@@ -2,6 +2,7 @@ import dotenv from 'dotenv';
 import { Router } from 'express';
 import mysql from 'mysql2';
 import book_description from '../middleware/middlewareBookDescription.js';
+import validarId from '../middleware/validarParams.js';
 
 dotenv.config();
 let storageBookDescription = Router();
@@ -39,10 +40,10 @@ storageBookDescription.post("/", book_description, (req, res) => {
     )
 })
 
-storageBookDescription.put("/:id_Book", book_description, (req, res) => {
+storageBookDescription.put("/:id", validarId, book_description, (req, res) => {
     con.query(
         `UPDATE books_description SET ? WHERE id_Book = ?`,
-        [req.body, req.params.id_Book],
+        [req.body, req.params],
 
         (error, data, fill) => {
             if (error) {
@@ -55,10 +56,10 @@ storageBookDescription.put("/:id_Book", book_description, (req, res) => {
     )
 })
 
-storageBookDescription.delete("/:id_Book", (req, res) => {
+storageBookDescription.delete("/:id", validarId, (req, res) => {
     con.query(
         `DELETE FROM books_description WHERE id_Book = ?`,
-        req.params.id_Book,
+        req.params,
 
         (error, data, fill) => {
             if (error) {

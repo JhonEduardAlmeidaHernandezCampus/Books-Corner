@@ -2,6 +2,7 @@ import dotenv from 'dotenv';
 import { Router } from 'express';
 import mysql from 'mysql2';
 import Client from '../middleware/middlewareClient.js';
+import validarId from '../middleware/validarParams.js';
 
 dotenv.config();
 let storageClients = Router();
@@ -39,10 +40,10 @@ storageClients.post("/", Client, (req, res) => {
     )
 })
 
-storageClients.put("/:id_Client", Client, (req, res) => {
+storageClients.put("/:id", validarId, Client, (req, res) => {
     con.query(
         `UPDATE clients SET ? WHERE id_Client = ?`,
-        [req.body, req.params.id_Client],
+        [req.body, req.params],
 
         (error, data, fill) => {
             if (error) {
@@ -55,10 +56,10 @@ storageClients.put("/:id_Client", Client, (req, res) => {
     )
 })
 
-storageClients.delete("/:id_Client", (req, res) => {
+storageClients.delete("/:id", validarId, (req, res) => {
     con.query(
         `DELETE FROM Clients WHERE id_Client = ?`,
-        req.params.id_Client,
+        req.params,
 
         (error, data, fill) => {
             if (error) {
