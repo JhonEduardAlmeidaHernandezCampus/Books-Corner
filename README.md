@@ -64,11 +64,11 @@ Resaltar la importancia de establecer un sistema de gestión de inventarios efic
 
 1.  Consultar la cantidad de clientes que hay en la base de datos.
 
-2. Consultar el registro de usuarios que tengan un "Penalthy Cost".
+2. Consultar el registro de clientes que tengan un "Penalthy Cost".
 
-3.  Consultar la cantidad de usuarios que llevaron un libro en especifico.
+3.  Consultar el registro de clientes que llevaron un libro en especifico.
 
-4. Consultar el registro de usuarios que están en estado de "Overdue".
+4. Consultar el registro de clientes que están en estado de "Overdue".
 
 5.  Consultar la cantidad que hay en inventario respecto a ese libro.
 
@@ -84,7 +84,6 @@ Resaltar la importancia de establecer un sistema de gestión de inventarios efic
 
 11. Consultar la cantidad total de multas acumuladas por un usuario específico.
 
-12. Consultar las categorías de libros junto con la cantidad total de libros disponibles en cada categoría.
 
     
 
