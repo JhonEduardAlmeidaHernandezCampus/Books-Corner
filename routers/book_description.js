@@ -31,9 +31,9 @@ storageBookDescription.post("/", book_description, (req, res) => {
         (error, data, fill) => {
             if (error) {
                 console.log(error);
-                res.status(400).send("Error al registrar la categoria")
+                res.status(400).send("Error al registrar el libro")
             } else {
-                res.send("Categoria registrada con exito")
+                res.send("Libro registrado con exito")
             }
         }
     )
