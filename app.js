@@ -8,6 +8,7 @@ import storageStatus_Loan from './routers/status_loan.js';
 import storageLoan from './routers/loan.js';
 import storageCategoriesBooks from './routers/categorie_book.js';
 import storageBookDescription from './routers/book_description.js';
+import storageInventory from './routers/inventory.js';
 
 
 dotenv.config();
@@ -20,6 +21,7 @@ appExpress.use("/status_loan", storageStatus_Loan);
 appExpress.use("/loan", storageLoan);
 appExpress.use("/categorie_book", storageCategoriesBooks);
 appExpress.use("/book_description", storageBookDescription);
+appExpress.use("/inventory", storageInventory);
 
 
 let config = JSON.parse(process.env.MY_CONFIG)
