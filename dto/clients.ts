@@ -18,7 +18,7 @@ export class dtoClients {
     tel_Client: string;
 
     @Expose({name: 'Email'})
-    @Transform(({value}) => { if(/\S+@\S+\.\S+/.test(value)) return value; else throw {status: 400, message: `Los datos no cumplen con los parametros de entrada`}}, {toClassOnly: true})    
+    @Transform(({value}) => { if(/\S+@\S+\.\S+/.test(value)) return value; else throw {status: 400, message: "Error en los parametros"}}, {toClassOnly: true})    
     email_Client: string;
 
     @Expose({name: 'Address'})

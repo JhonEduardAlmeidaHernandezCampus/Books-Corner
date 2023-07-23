@@ -55,7 +55,7 @@ __decorate([
     Transform(({ value }) => { if (/\S+@\S+\.\S+/.test(value))
         return value;
     else
-        throw { status: 400, message: `Los datos no cumplen con los parametros de entrada` }; }, { toClassOnly: true }),
+        throw { status: 400, message: "Error en los parametros" }; }, { toClassOnly: true }),
     __metadata("design:type", String)
 ], dtoClients.prototype, "email_Client", void 0);
 __decorate([
