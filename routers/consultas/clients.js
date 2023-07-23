@@ -70,4 +70,16 @@ storageConsultaClient.get("/categoria/", (req, res) => {
     )
 })
 
+// http://127.10.10.10:5010/clients/loan/
+storageConsultaClient.get("/loan/:id_Client/", (req, res) => {
+    con.query(
+        `SELECT id_Client, name_Client, tel_Client, name_Status FROM clients INNER JOIN loan ON clients.id_Client = loan.id_Client_fk INNER JOIN status_Loan ON loan.id_Status_Loan_fk = status_Loan.id_Status WHERE id_Client = ? && id_Status = 1`,
+        req.params.id_Client,
+
+        (error, data, fill) => {
+            res.send(data)
+        }
+    )
+})
+
 export default storageConsultaClient;
