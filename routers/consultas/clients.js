@@ -34,4 +34,16 @@ storageConsultaClient.get("/penalthy", (req, res) => {
     )
 })
 
+// http://127.10.10.10:5010/clients/penalthy
+storageConsultaClient.get("/libro/:id_Book", (req, res) => {
+    con.query(
+        `SELECT id_Client, name_Client, tel_Client, id_Book, name_Book, books_description.description FROM clients INNER JOIN loan ON clients.id_Client = loan.id_Client_fk INNER JOIN inventory ON loan.id_Inventory_fk = inventory.id_Inventory INNER JOIN books_description ON inventory.id_Book_fk = books_description.id_Book WHERE id_Book = ?`,
+        req.params.id_Book,
+
+        (error, data, fill) => {
+            res.send(data)
+        }
+    )
+})
+
 export default storageConsultaClient;
