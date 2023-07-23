@@ -28,8 +28,10 @@ appExpress.use("/status_inventory", storageStatusInventory);
 
 // Consultas ----------------------------------------------------------------
 import storageConsultaClient from './routers/consultas/clients.js';
+import storageConsultaInventory from './routers/consultas/inventory.js';
 
 appExpress.use("/clients", storageConsultaClient);
+appExpress.use("/inventory", storageConsultaInventory);
 // --------------------------------------------------------------------------
 
 let config = JSON.parse(process.env.MY_CONFIG)
