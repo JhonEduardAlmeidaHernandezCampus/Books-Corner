@@ -160,17 +160,17 @@ Puedes probar diferentes rutas accediendo a:
 
 Puedes probar las consultas accediendo a las siguientes rutas:
 
-- `http://"hostname":"port"/clients/cantidad` 
-- `http://"hostname":"port"/clients/penalthy` 
-- `http://"hostname":"port"/clients/libro/1` 
-- `http://"hostname":"port"/clients/status`
-- `http://"hostname":"port"/inventory/cantidad/1`
-- `http://"hostname":"port"/inventory/status`
-- `http://"hostname":"port"/clients/categoria`
-- `http://"hostname":"port"/inventory/all_books`
-- `http://"hostname":"port"/books/`
-- `http://"hostname":"port"/clients/loan/1041566753`
-- `http://"hostname":"port"/clients/penalthy/1102312312`
+- `http://"hostname":"port"/consultaClients/cantidad` 
+- `http://"hostname":"port"/consultaClients/penalthy` 
+- `http://"hostname":"port"/consultaClients/libro/1` 
+- `http://"hostname":"port"/consultaClients/status`
+- `http://"hostname":"port"/consultaInventory/cantidad/1`
+- `http://"hostname":"port"/consultaInventory/status`
+- `http://"hostname":"port"/consultaClients/categoria`
+- `http://"hostname":"port"/consultaInventory/all_books`
+- `http://"hostname":"port"/consultaBooks`
+- `http://"hostname":"port"/consultaClients/loan/1041566753`
+- `http://"hostname":"port"/consultaClients/penalthy/1102312312`
 
 
 
