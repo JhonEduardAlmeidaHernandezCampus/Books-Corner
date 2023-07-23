@@ -85,7 +85,7 @@ Resaltar la importancia de establecer un sistema de gestión de inventarios efic
 11. Consultar la cantidad total de multas acumuladas por un usuario específico.
 
 
-    
+​    
 
 
 
@@ -99,3 +99,668 @@ Resaltar la importancia de establecer un sistema de gestión de inventarios efic
 #### BASE DE DATOS
 
 ![IMG Base de datos](./assets/img/database.png)
+
+
+
+## Instalación
+
+1. Para descargar Node.js ve a la siguiente página "[Download | Node.js (nodejs.org)](https://nodejs.org/en/download)".
+
+2. Descarga la versión de Node.js correspondiente a su sistema operativo.
+
+3. Clona este repositorio en tu máquina local.
+
+4. Abre una terminal en el editor de código de tu preferencia, se recomienda "Visual Studio Code".
+
+5. Ejecuta el siguiente comando para instalar las dependencias:
+
+   `NOTA:` Las dependencias a utilizar ya vienen dentro del proyecto, solo clone el repositorio y abra la terminal e ingrese el siguiente comando.
+
+```
+npm install;
+```
+
+1. Una vez instaladas las dependencias, tienes que ejecutar el nodemon de la siguiente manera y también ejecutar el tsc.
+
+   `npm run dev;`
+
+   `npm run tsc;`
+
+
+
+## Configuración
+
+1. Asegurarse de tener creada la base de datos, si no cuentas con una base de datos, este proyecto ya trae una por defecto en la ruta `db/db.sql`
+2. Crea un archivo `.env` en el directorio raíz de la aplicación.
+3. Dentro del archivo `.env` , define las siguientes variables de entorno:
+
+```
+MY_CONFIG={"hostname": "", "port": }
+MY_CONNECT={"host": "", "user": "", "password": "", "database": "", "port": "3306"}
+```
+
+
+
+## Uso
+
+Puedes probar diferentes rutas accediendo a:
+
+- `http://"hostname":"port"/administrator` ruta relacionada con datos administrativos.
+- `http://"hostname":"port"/clients` ruta relacionada con clientes.
+- `http://"hostname":"port"/status_loan` ruta relacionada con estados de los prestamos.
+- `http://"hostname":"port"/loan` ruta relacionada con prestamos.
+- `http://"hostname":"port"/categorie_book` ruta relacionada con la categorías de libros.
+- `http://"hostname":"port"/book_description` ruta relacionada con la descripción de los libros.
+- `http://"hostname":"port"/inventory` ruta relacionada con inventarios.
+- `http://"hostname":"port"/status_inventory` ruta relacionada el estado del inventario.
+
+
+
+## Consultas
+
+Puedes probar las consultas accediendo a las siguientes rutas:
+
+- `http://"hostname":"port"/clients/cantidad` 
+- `http://"hostname":"port"/clients/penalthy` 
+- `http://"hostname":"port"/clients/libro/1` 
+- `http://"hostname":"port"/clients/status`
+- `http://"hostname":"port"/inventory/cantidad/1`
+- `http://"hostname":"port"/inventory/status`
+- `http://"hostname":"port"/clients/categoria`
+- `http://"hostname":"port"/inventory/all_books`
+- `http://"hostname":"port"/books/`
+- `http://"hostname":"port"/clients/loan/1041566753`
+- `http://"hostname":"port"/clients/penalthy/1102312312`
+
+
+
+​	`NOTA:` Las consultas aparecen al inicio de este README.
+
+
+
+## Validaciones
+
+El sistema cuenta con validaciones al momento de ingresar datos en la base de datos hechas en Typescript, el sistema valida cada campo y su tipo de dato, si el dato no es correcto le muestra un error.
+
+
+
+
+
+# EndPoint de Administrator
+
+#### GET: `http://"hostname":"port"/administrator`
+
+Este EndPoint devuelve una lista de administradores existentes.
+
+```
+[
+  {
+    "id_User": 1,
+    "name_User": "John Doe",
+    "tel_User": "+123456789",
+    "email_User": "john.doe@email.com",
+    "direccion_User": "123 Main Street"
+  },
+  {
+    "id_User": 2,
+    "name_User": "Jane Smith",
+    "tel_User": "+987654321",
+    "email_User": "jane.smith@email.com",
+    "direccion_User": "456 Park Avenue"
+  },
+  ...
+]
+```
+
+
+
+#### POST: `http://"hostname":"port"/administrator`
+
+Este EndPoint permite agregar un nuevo administrador.
+
+**Parámetros de entrada:**
+
+- `Name` : Nombre del administrador.
+- `Phone`: Numero de teléfono del administrador.
+- `Email` : Email del administrador.
+- `Address`: Dirección del administrador.
+
+**Ejemplo:**
+
+```
+{
+   "Name": "Jhon Almeida",
+   "Phone": "+57 3200021321",
+   "Email": "jhon@gmail.com",
+   "Address": "Calle 51 Transversal"
+}
+```
+
+
+
+#### PUT: `http://"hostname":"port"/administrator/:id`
+
+Este EndPoint permite actualizar los campos de la tabla de administrador.
+
+```
+{
+   "Name": "Jhon Hernandez",
+   "Phone": "+57 3200021321",
+   "Email": "jhon@gmail.com",
+   "Address": "Calle 12 Transversal"
+}
+```
+
+
+
+#### DELETE: `http://"hostname":"port"/administrator/:id`
+
+Este EndPoint permite eliminar los campos de la tabla de administrador.
+
+
+
+
+
+# EndPoint de Books Description
+
+#### GET: `http://"hostname":"port"/book_description`
+
+Este EndPoint devuelve una lista de book description existentes.
+
+```
+[
+  {
+    "id_Book": 1,
+    "id_Categorie_fk": 1,
+    "name_Book": "The Great Gatsby",
+    "description": "A classic novel set in the Jazz Age.",
+    "name_Author": "F. Scott Fitzgerald"
+  },
+  {
+    "id_Book": 2,
+    "id_Categorie_fk": 2,
+    "name_Book": "Dune",
+    "description": "An epic science fiction novel.",
+    "name_Author": "Frank Herbert"
+  },
+  ...
+]
+```
+
+
+
+#### POST: `http://"hostname":"port"/book_description`
+
+Este EndPoint permite agregar un nuevo book.
+
+**Parámetros de entrada:**
+
+- `ID_Categorie` : ID de la categoría del libro.
+- `Name_Book` : Nombre del libro.
+- `Description` : Descripción del libro.
+- `Author`: Autor del libro.
+
+**Ejemplo:**
+
+```
+{
+    "ID_Categorie": 2,
+    "Name_Book": "El libro de los tesoros",
+    "Description": "An epic science fiction novel.",
+    "Author": "Frank Herbert"
+}
+```
+
+
+
+#### PUT: `http://"hostname":"port"/book_description/:id`
+
+Este EndPoint permite actualizar los campos de la tabla de book description.
+
+```
+{
+    "ID_Categorie": 2,
+    "Name_Book": "El libro de los tesoros",
+    "Description": "An epic science fiction novel.",
+    "Author": "Frank Herbert"
+}
+```
+
+
+
+#### DELETE: `http://"hostname":"port"/book_description/:id`
+
+Este EndPoint permite eliminar los campos de la tabla de book description.
+
+
+
+
+
+# EndPoint de Categorie Books
+
+#### GET: `http://"hostname":"port"/categorie_book`
+
+Este EndPoint devuelve una lista de categorias existentes.
+
+```
+[
+  {
+    "id_Categorie": 1,
+    "name_Categorie": "Fiction"
+  },
+  {
+    "id_Categorie": 2,
+    "name_Categorie": "Science Fiction"
+  },
+  ...
+]
+```
+
+
+
+#### POST: `http://"hostname":"port"/categorie_book`
+
+Este EndPoint permite agregar una nueva categoria.  
+
+**Parámetros de entrada:**
+
+- `Name_Categorie` : Nombre de la categoría del libro.
+
+**Ejemplo:**
+
+```
+{
+    "Name_Categorie": "Fiction"
+}
+```
+
+
+
+#### PUT: `http://"hostname":"port"/categorie_book/:id`
+
+Este EndPoint permite actualizar los campos de la tabla de categorías de libros.
+
+```
+{
+    "Name_Categorie": "Fiction"
+}
+```
+
+
+
+#### DELETE: `http://"hostname":"port"/categorie_book/:id`
+
+Este EndPoint permite eliminar los campos de la tabla de categorías de libros.
+
+
+
+
+
+# EndPoint de Clients
+
+#### GET: `http://"hostname":"port"/clients`
+
+Este EndPoint devuelve una lista de clientes existentes.
+
+```
+[
+  {
+    "id_Client": 1021231232,
+    "id_User_fk": 2,
+    "name_Client": "Bob Williams",
+    "tel_Client": "+222222222",
+    "email_Client": "bob.williams@email.com",
+    "direccion_Client": "222 Maple Avenue"
+  },
+  {
+    "id_Client": 1041566753,
+    "id_User_fk": 3,
+    "name_Client": "Eva Martinez",
+    "tel_Client": "+333333333",
+    "email_Client": "eva.martinez@email.com",
+    "direccion_Client": "333 Pine Road"
+  },
+  ...
+]
+```
+
+
+
+#### POST: `http://"hostname":"port"/clients`
+
+Este EndPoint permite agregar un nuevo cliente.  
+
+**Parámetros de entrada:**
+
+- `Cc` : Cedula del cliente.
+- `ID_Admin` : ID del administrador.
+- `Name` : Nombre del cliente.
+- `Phone` : Teléfono del cliente.
+- `Email` : Email del cliente.
+- `Address` : Dirección del cliente.
+
+**Ejemplo:**
+
+```
+{
+    "Cc": 1021231232,
+    "ID_Admin": 2,
+    "Name": "Bob Williams",
+    "Phone": "+222222222",
+    "Email": "bob.williams@email.com",
+    "Address": "222 Maple Avenue"
+}
+```
+
+
+
+#### PUT: `http://"hostname":"port"/clients/:id`
+
+Este EndPoint permite actualizar los campos de la tabla de clientes.
+
+```
+{
+    "Cc": 1021231232,
+    "ID_Admin": 2,
+    "Name": "Bob Williams",
+    "Phone": "+222222222",
+    "Email": "bob.williams@email.com",
+    "Address": "222 Maple Avenue"
+}
+```
+
+
+
+#### DELETE: `http://"hostname":"port"/clients/:id`
+
+Este EndPoint permite eliminar los campos de la tabla de clientes.
+
+
+
+
+
+# EndPoint de Inventory
+
+#### GET: `http://"hostname":"port"/inventory`
+
+Este EndPoint devuelve una lista de inventarios existentes.
+
+```
+[
+  {
+    "id_Inventory": 1,
+    "id_Book_fk": 1,
+    "id_Status_Inventory": 2,
+    "quantity_Book": 13,
+    "creation_Date_Inventory": "2023-07-22T22:13:31.000Z"
+  },
+  {
+    "id_Inventory": 2,
+    "id_Book_fk": 2,
+    "id_Status_Inventory": 2,
+    "quantity_Book": 5,
+    "creation_Date_Inventory": "2023-07-22T22:13:31.000Z"
+  },
+  ...
+]
+```
+
+
+
+#### POST: `http://"hostname":"port"/inventory`
+
+Este EndPoint permite agregar un nuevo inventario.  
+
+**Parámetros de entrada:**
+
+- `ID_Book` : ID del libro.
+- `ID_Status_Inventory` : ID del estado del inventario.
+- `Count` : Cantidad existente de ese libro.
+
+**Ejemplo:**
+
+```
+{
+    "ID_Book": 2,
+    "ID_Status_Inventory": 2,
+    "Count": 2
+}
+```
+
+
+
+#### PUT: `http://"hostname":"port"/inventory/:id`
+
+Este EndPoint permite actualizar los campos de la tabla de inventarios.
+
+```
+{
+    "ID_Book": 2,
+    "ID_Status_Inventory": 2,
+    "Count": 2
+}
+```
+
+
+
+#### DELETE: `http://"hostname":"port"/inventory/:id`
+
+Este EndPoint permite eliminar los campos de la tabla de inventarios.
+
+
+
+
+
+# EndPoint de Loan
+
+#### GET: `http://"hostname":"port"/loan`
+
+Este EndPoint devuelve una lista de prestamos existentes.
+
+```
+[
+  {
+    "id_Loan": 1,
+    "id_Client_fk": 1021231232,
+    "start_Loan": "2023-07-23T03:15:00.000Z",
+    "end_Loan": "2023-07-19T05:00:00.000Z",
+    "id_Status_Loan_fk": 1,
+    "id_Inventory_fk": 1,
+    "description": "The jhon sadsaGatsby",
+    "penalthy_Cost": 1000
+  },
+  {
+    "id_Loan": 2,
+    "id_Client_fk": 1041566753,
+    "start_Loan": "2023-07-22T22:15:00.000Z",
+    "end_Loan": "2023-07-19T05:00:00.000Z",
+    "id_Status_Loan_fk": 1,
+    "id_Inventory_fk": 2,
+    "description": "Dune",
+    "penalthy_Cost": 0
+  },
+  ...
+]
+```
+
+
+
+#### POST: `http://"hostname":"port"/loan`
+
+Este EndPoint permite agregar un nuevo préstamo.  
+
+**Parámetros de entrada:**
+
+- `Cc_Client` : Cedula del cliente.
+- `End_Date` : Fecha de vencimiento del préstamo.
+- `Status_Loan` : Estado del préstamo.
+- `ID_Inventory` : ID del inventario del libro.
+- `Description` : Descripción del préstamo.
+- `Penalthy` : Costo por vencimiento del préstamo.
+
+**Ejemplo:**
+
+```
+{
+    "Cc_Client": 1041566753,
+    "End_Date": "2023-07-19T05:00:00.000Z",
+    "Status_Loan": 1,
+    "ID_Inventory": 2,
+    "Description": "Dune",
+    "Penalthy": 0
+}
+```
+
+
+
+#### PUT: `http://"hostname":"port"/loan/:id`
+
+Este EndPoint permite actualizar los campos de la tabla de prestamos.
+
+```
+{
+    "Cc_Client": 1041566753,
+    "End_Date": "2023-07-19T05:00:00.000Z",
+    "Status_Loan": 1,
+    "ID_Inventory": 2,
+    "Description": "Dune",
+    "Penalthy": 0
+}
+```
+
+
+
+#### DELETE: `http://"hostname":"port"/loan/:id`
+
+Este EndPoint permite eliminar los campos de la tabla de prestamos.
+
+
+
+
+
+# EndPoint de Status Inventory
+
+#### GET: `http://"hostname":"port"/status_inventory`
+
+Este EndPoint devuelve una lista de estado de inventarios existentes.
+
+```
+[
+  {
+    "id_Status": 1,
+    "name_Status": "In Stock"
+  },
+  {
+    "id_Status": 2,
+    "name_Status": "Out of Stock"
+  },
+  ...
+]
+```
+
+
+
+#### POST: `http://"hostname":"port"/status_inventory`
+
+Este EndPoint permite agregar un nuevo estado de inventario.  
+
+**Parámetros de entrada:**
+
+- `Name` : Nombre del estado del inventario.
+
+**Ejemplo:**
+
+```
+{
+    "Name": "In Stock"
+}
+```
+
+
+
+#### PUT: `http://"hostname":"port"/status_inventory/:id`
+
+Este EndPoint permite actualizar los campos de la tabla de estado de inventario.
+
+```
+{
+    "Name": "In Stock"
+}
+```
+
+
+
+#### DELETE: `http://"hostname":"port"/status_inventory/:id`
+
+Este EndPoint permite eliminar los campos de la tabla de estado de inventario.
+
+
+
+
+
+# EndPoint de Status Loan
+
+#### GET: `http://"hostname":"port"/status_loan`
+
+Este EndPoint devuelve una lista de estado de prestamos existentes.
+
+```
+[
+  {
+    "id_Status": 1,
+    "name_Status": "On Loan"
+  },
+  {
+    "id_Status": 2,
+    "name_Status": "Overdue"
+  },
+  ...
+]
+```
+
+
+
+#### POST: `http://"hostname":"port"/status_loan`
+
+Este EndPoint permite agregar un nuevo estado de inventario.  
+
+**Parámetros de entrada:**
+
+- `Name` : Nombre del estado del préstamo.
+
+**Ejemplo:**
+
+```
+{
+    "Name": "On Loan"
+}
+```
+
+
+
+#### PUT: `http://"hostname":"port"/status_loan/:id`
+
+Este EndPoint permite actualizar los campos de la tabla de estado de préstamo.
+
+```
+{
+    "Name": "On Loan"
+}
+```
+
+
+
+#### DELETE: `http://"hostname":"port"/status_loan/:id`
+
+Este EndPoint permite eliminar los campos de la tabla de estado de préstamo.
+
+
+
+
+
+# NOTA
+
+En tal caso de presentar algún error el código, comunicarse con el desarrollador.
+
+`EMAIL: `[Jhonhernandez.1899@gmail.com](mailto:Jhonhernandez.1899@gmail.com)
+
