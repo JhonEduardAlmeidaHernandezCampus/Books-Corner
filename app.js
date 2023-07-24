@@ -28,13 +28,13 @@ appExpress.use("/generarToken/:id/:nombre", generarToken)
 // -----------------------------------------------------------------------
 
 appExpress.use("/administrator", validarToken, storageAdministrator);
-appExpress.use("/clients", validarToken, storageClients);
-appExpress.use("/status_loan", validarToken, storageStatus_Loan);
-appExpress.use("/loan", validarToken, storageLoan);
-appExpress.use("/categorie_book", validarToken, storageCategoriesBooks);
 appExpress.use("/book_description", validarToken, storageBookDescription);
+appExpress.use("/categorie_book", validarToken, storageCategoriesBooks);
+appExpress.use("/clients", validarToken, storageClients);
 appExpress.use("/inventory", validarToken, storageInventory);
+appExpress.use("/loan", validarToken, storageLoan);
 appExpress.use("/status_inventory", validarToken, storageStatusInventory);
+appExpress.use("/status_loan", validarToken, storageStatus_Loan);
 // -----------------------------------------------------------------------
 
 appExpress.use("/consultaClients", validarToken, storageConsultaClient);
