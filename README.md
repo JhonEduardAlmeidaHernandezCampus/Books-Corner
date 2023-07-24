@@ -137,6 +137,7 @@ npm install;
 ```
 MY_CONFIG={"hostname": "", "port": }
 MY_CONNECT={"host": "", "user": "", "password": "", "database": "", "port": "3306"}
+MY_JWT="";
 ```
 
 
@@ -146,13 +147,13 @@ MY_CONNECT={"host": "", "user": "", "password": "", "database": "", "port": "330
 Puedes probar diferentes rutas accediendo a:
 
 - `http://"hostname":"port"/administrator` ruta relacionada con datos administrativos.
-- `http://"hostname":"port"/clients` ruta relacionada con clientes.
-- `http://"hostname":"port"/status_loan` ruta relacionada con estados de los prestamos.
-- `http://"hostname":"port"/loan` ruta relacionada con prestamos.
-- `http://"hostname":"port"/categorie_book` ruta relacionada con la categorías de libros.
 - `http://"hostname":"port"/book_description` ruta relacionada con la descripción de los libros.
+- `http://"hostname":"port"/categorie_book` ruta relacionada con la categorías de libros.
+- `http://"hostname":"port"/clients` ruta relacionada con clientes.
 - `http://"hostname":"port"/inventory` ruta relacionada con inventarios.
+- `http://"hostname":"port"/loan` ruta relacionada con prestamos.
 - `http://"hostname":"port"/status_inventory` ruta relacionada el estado del inventario.
+- `http://"hostname":"port"/status_loan` ruta relacionada con estados de los prestamos.
 
 
 
@@ -762,5 +763,5 @@ Este EndPoint permite eliminar los campos de la tabla de estado de préstamo.
 
 En tal caso de presentar algún error el código, comunicarse con el desarrollador.
 
-`EMAIL: `[Jhonhernandez.1899@gmail.com](mailto:Jhonhernandez.1899@gmail.com)
+`EMAIL:` [Jhonhernandez.1899@gmail.com](mailto:Jhonhernandez.1899@gmail.com)
 
