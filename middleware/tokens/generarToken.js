@@ -1,4 +1,7 @@
 import {SignJWT} from 'jose';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const generarToken = async(req, res, next) => {
     let json = {

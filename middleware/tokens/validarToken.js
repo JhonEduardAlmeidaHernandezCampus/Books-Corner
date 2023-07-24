@@ -1,4 +1,7 @@
 import {jwtVerify} from 'jose';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const validatToken = async(req, res, next) => {
     const {authorization} = req.headers;
