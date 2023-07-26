@@ -120,12 +120,6 @@ Resaltar la importancia de establecer un sistema de gestión de inventarios efic
 npm install;
 ```
 
-1. Una vez instaladas las dependencias, tienes que ejecutar el nodemon de la siguiente manera y también ejecutar el tsc.
-
-   `npm run dev;`
-
-   `npm run tsc;`
-
 
 
 ## Configuración
@@ -136,15 +130,48 @@ npm install;
 
 ```
 MY_CONFIG={"hostname": "", "port": }
-MY_CONNECT={"host": "", "user": "", "password": "", "database": "", "port": "3306"}
+MY_CONNECT={"host": "", "user": "", "password": "", "database": "books_corner", "port":3306}
 MY_JWT="";
 ```
 
+4. Una vez instaladas las dependencias y configurado las variables de entorno, tienes que ejecutar el nodemon de la siguiente manera y también ejecutar el tsc.
+
+`npm run dev;`
+
+`		npm run tsc;`
 
 
-## Uso
 
-Puedes probar diferentes rutas accediendo a:
+#### Generar Token `IMPORTANTE`
+
+Antes de empezar a utilizar las diferentes rutas y endPoints debemos generar un token de acceso, que debemos colocar en nuestro header/Autorization, este token tiene un limite de 10h, en ese rango de tiempo podremos acceder a las rutas y endPoints de nuestra Api.
+
+para generar nuestro token, debemos acceder a nuestra extensión de visual estudio llamada **Thunder-Client**, colocar la siguiente ruta:
+
+`GET:` **http://"hostname":"port"/generarToken/123/jhon**
+
+`NOTA:` Esos datos son un ejemplo, es solo para simular el funcionamiento de un inicio de sesión, así que cualquier dato colocado en su lugar les generara el token sin ningún problema.
+
+
+
+`El token generado se mostrara en la pantalla de resultado de Thunder-Client`
+
+
+
+Una vez obtenido nuestro token debemos ingresarlo en la extensión de visual estudio `Thunder-Client` ruta "Headers", una vez dentro, en la casilla de header colocar `Authorization`, y el token generado anteriormente.
+
+
+
+
+
+### Uso del Token 
+
+Una vez ingresado en el header de Autorización podremos pasar a probar las siguiente rutas:
+
+  `NOTA:` Estas consultas son de método GET, un poco mas abajo encontrara todos los metodos relacionados a estas consultas.
+
+
+
 
 - `http://"hostname":"port"/administrator` ruta relacionada con datos administrativos.
 - `http://"hostname":"port"/book_description` ruta relacionada con la descripción de los libros.
@@ -160,6 +187,8 @@ Puedes probar diferentes rutas accediendo a:
 ## Consultas
 
 Puedes probar las consultas accediendo a las siguientes rutas:
+
+​	Estas consultas son de método GET.
 
 - `http://"hostname":"port"/consultaClients/cantidad` 
 - `http://"hostname":"port"/consultaClients/penalthy` 
@@ -221,10 +250,10 @@ Este EndPoint permite agregar un nuevo administrador.
 
 **Parámetros de entrada:**
 
-- `Name` : Nombre del administrador.
-- `Phone`: Numero de teléfono del administrador.
-- `Email` : Email del administrador.
-- `Address`: Dirección del administrador.
+- `Name` : Nombre del administrador **"String"**.
+- `Phone`: Numero de teléfono del administrador, se puede agregar el código del país, también toma el dato si lo pasa tipo **"Number, String"**.
+- `Email` : Email del administrador **"String"**.
+- `Address`: Dirección del administrador **"String"**.
 
 **Ejemplo:**
 
@@ -237,11 +266,22 @@ Este EndPoint permite agregar un nuevo administrador.
 }
 ```
 
+**`NOTA:`** Todos los campos están validados, tanto las llaves como los parámetros a enviar, si no pasa una llave o un dato como se muestra en este ejemplo, el programa le va a arrojar un error.
+
 
 
 #### PUT: `http://"hostname":"port"/administrator/:id`
 
 Este EndPoint permite actualizar los campos de la tabla de administrador.
+
+**Parámetros de entrada:**
+
+- `Name` : Nombre del administrador **"String"**.
+- `Phone`: Numero de teléfono del administrador, se puede agregar el código del país, también toma el dato si lo pasa tipo **"Number, String"**.
+- `Email` : Email del administrador **"String"**.
+- `Address`: Dirección del administrador **"String"**.
+
+**Ejemplo:**
 
 ```
 {
@@ -252,11 +292,21 @@ Este EndPoint permite actualizar los campos de la tabla de administrador.
 }
 ```
 
+**`NOTA:`** Todos los campos están validados, tanto las llaves como los parámetros a enviar, si no pasa una llave o un dato como se muestra en este ejemplo, el programa le va a arrojar un error.
+
+**`IMPORTANTE`** El campo ID se pasa por el header, el campo también esta validado de que sea solo numero, en tal caso de que le pase una letra el programa le va a botar un error.
+
 
 
 #### DELETE: `http://"hostname":"port"/administrator/:id`
 
 Este EndPoint permite eliminar los campos de la tabla de administrador.
+
+**Parámetros de entrada:**
+
+- `id_User` : ID del usuario al cual va a eliminar **"Number"**.
+
+**`IMPORTANTE`** El campo ID se pasa por el header, el campo también esta validado de que sea solo numero, en tal caso de que le pase una letra el programa le va a botar un error.
 
 
 
@@ -296,10 +346,10 @@ Este EndPoint permite agregar un nuevo book.
 
 **Parámetros de entrada:**
 
-- `ID_Categorie` : ID de la categoría del libro.
-- `Name_Book` : Nombre del libro.
-- `Description` : Descripción del libro.
-- `Author`: Autor del libro.
+- `ID_Categorie` : ID de la categoría del libro **"Number"**.
+- `Name_Book` : Nombre del libro **"String"**.
+- `Description` : Descripción del libro **"String"**.
+- `Author`: Autor del libro **"String"**.
 
 **Ejemplo:**
 
@@ -312,11 +362,22 @@ Este EndPoint permite agregar un nuevo book.
 }
 ```
 
+**`NOTA:`** Todos los campos están validados, tanto las llaves como los parámetros a enviar, si no pasa una llave o un dato como se muestra en este ejemplo, el programa le va a arrojar un error.
+
 
 
 #### PUT: `http://"hostname":"port"/book_description/:id`
 
 Este EndPoint permite actualizar los campos de la tabla de book description.
+
+**Parámetros de entrada:**
+
+- `ID_Categorie` : ID de la categoría del libro **"Number"**.
+- `Name_Book` : Nombre del libro **"String"**.
+- `Description` : Descripción del libro **"String"**.
+- `Author`: Autor del libro **"String"**.
+
+**Ejemplo:**
 
 ```
 {
@@ -327,11 +388,21 @@ Este EndPoint permite actualizar los campos de la tabla de book description.
 }
 ```
 
+**`NOTA:`** Todos los campos están validados, tanto las llaves como los parámetros a enviar, si no pasa una llave o un dato como se muestra en este ejemplo, el programa le va a arrojar un error.
+
+**`IMPORTANTE`** El campo ID se pasa por el header, el campo también esta validado de que sea solo numero, en tal caso de que le pase una letra el programa le va a botar un error.
+
 
 
 #### DELETE: `http://"hostname":"port"/book_description/:id`
 
 Este EndPoint permite eliminar los campos de la tabla de book description.
+
+**Parámetros de entrada:**
+
+- `id_Book` : ID del libro que va a eliminar **"Number"**.
+
+**`IMPORTANTE`** El campo ID se pasa por el header, el campo también esta validado de que sea solo numero, en tal caso de que le pase una letra el programa le va a botar un error.
 
 
 
@@ -365,7 +436,7 @@ Este EndPoint permite agregar una nueva categoria.
 
 **Parámetros de entrada:**
 
-- `Name_Categorie` : Nombre de la categoría del libro.
+- `Name_Categorie` : Nombre de la categoría del libro **"String"**.
 
 **Ejemplo:**
 
@@ -375,11 +446,17 @@ Este EndPoint permite agregar una nueva categoria.
 }
 ```
 
+**`NOTA:`** Todos los campos están validados, tanto las llaves como los parámetros a enviar, si no pasa una llave o un dato como se muestra en este ejemplo, el programa le va a arrojar un error.
+
 
 
 #### PUT: `http://"hostname":"port"/categorie_book/:id`
 
 Este EndPoint permite actualizar los campos de la tabla de categorías de libros.
+
+**Parámetros de entrada:**
+
+- `Name_Categorie` : Nombre de la categoría del libro **"String"**.
 
 ```
 {
@@ -387,11 +464,21 @@ Este EndPoint permite actualizar los campos de la tabla de categorías de libros
 }
 ```
 
+**`NOTA:`** Todos los campos están validados, tanto las llaves como los parámetros a enviar, si no pasa una llave o un dato como se muestra en este ejemplo, el programa le va a arrojar un error.
+
+**`IMPORTANTE`** El campo ID se pasa por el header, el campo también esta validado de que sea solo numero, en tal caso de que le pase una letra el programa le va a botar un error.
+
 
 
 #### DELETE: `http://"hostname":"port"/categorie_book/:id`
 
 Este EndPoint permite eliminar los campos de la tabla de categorías de libros.
+
+**Parámetros de entrada:**
+
+- `id_Categorie` : Nombre de la categoría del libro **"String"**.
+
+**`IMPORTANTE`** El campo ID se pasa por el header, el campo también esta validado de que sea solo numero, en tal caso de que le pase una letra el programa le va a botar un error.
 
 
 
@@ -435,10 +522,10 @@ Este EndPoint permite agregar un nuevo cliente.
 
 - `Cc` : Cedula del cliente.
 - `ID_Admin` : ID del administrador.
-- `Name` : Nombre del cliente.
-- `Phone` : Teléfono del cliente.
-- `Email` : Email del cliente.
-- `Address` : Dirección del cliente.
+- `Name` : Nombre del cliente **"String"**.
+- `Phone` : Teléfono del cliente, , se puede agregar el código del país, también toma el dato si lo pasa tipo **"Number, String"** .
+- `Email` : Email del cliente **"String"**.
+- `Address` : Dirección del cliente **"String"**.
 
 **Ejemplo:**
 
@@ -453,11 +540,24 @@ Este EndPoint permite agregar un nuevo cliente.
 }
 ```
 
+**`NOTA:`** Todos los campos están validados, tanto las llaves como los parámetros a enviar, si no pasa una llave o un dato como se muestra en este ejemplo, el programa le va a arrojar un error.
+
 
 
 #### PUT: `http://"hostname":"port"/clients/:id`
 
 Este EndPoint permite actualizar los campos de la tabla de clientes.
+
+**Parámetros de entrada:**
+
+- `Cc` : Cedula del cliente **"Number"**.
+- `ID_Admin` : ID del administrador **"Number"**.
+- `Name` : Nombre del cliente **"String"**.
+- `Phone` : Teléfono del cliente, , se puede agregar el código del país, también toma el dato si lo pasa tipo **"Number, String"** .
+- `Email` : Email del cliente **"String"**.
+- `Address` : Dirección del cliente **"String"**.
+
+**Ejemplo:**
 
 ```
 {
@@ -470,11 +570,21 @@ Este EndPoint permite actualizar los campos de la tabla de clientes.
 }
 ```
 
+**`NOTA:`** Todos los campos están validados, tanto las llaves como los parámetros a enviar, si no pasa una llave o un dato como se muestra en este ejemplo, el programa le va a arrojar un error.
+
+**`IMPORTANTE`** El campo ID se pasa por el header, el campo también esta validado de que sea solo numero, en tal caso de que le pase una letra el programa le va a botar un error.
+
 
 
 #### DELETE: `http://"hostname":"port"/clients/:id`
 
 Este EndPoint permite eliminar los campos de la tabla de clientes.
+
+**Parámetros de entrada:**
+
+- `id_Client` : ID del cliente que va a eliminar **"Number"**.
+
+**`IMPORTANTE`** El campo ID se pasa por el header, el campo también esta validado de que sea solo numero, en tal caso de que le pase una letra el programa le va a botar un error.
 
 
 
@@ -514,9 +624,9 @@ Este EndPoint permite agregar un nuevo inventario.
 
 **Parámetros de entrada:**
 
-- `ID_Book` : ID del libro.
-- `ID_Status_Inventory` : ID del estado del inventario.
-- `Count` : Cantidad existente de ese libro.
+- `ID_Book` : ID del libro **"Number"**.
+- `ID_Status_Inventory` : ID del estado del inventario **"Number"**.
+- `Count` : Cantidad existente de ese libro **"Number"**.
 
 **Ejemplo:**
 
@@ -528,11 +638,19 @@ Este EndPoint permite agregar un nuevo inventario.
 }
 ```
 
+**`NOTA:`** Todos los campos están validados, tanto las llaves como los parámetros a enviar, si no pasa una llave o un dato como se muestra en este ejemplo, el programa le va a arrojar un error.
+
 
 
 #### PUT: `http://"hostname":"port"/inventory/:id`
 
 Este EndPoint permite actualizar los campos de la tabla de inventarios.
+
+**Parámetros de entrada:**
+
+- `ID_Book` : ID del libro **"Number"**.
+- `ID_Status_Inventory` : ID del estado del inventario **"Number"**.
+- `Count` : Cantidad existente de ese libro **"Number"**.
 
 ```
 {
@@ -542,11 +660,21 @@ Este EndPoint permite actualizar los campos de la tabla de inventarios.
 }
 ```
 
+**`NOTA:`** Todos los campos están validados, tanto las llaves como los parámetros a enviar, si no pasa una llave o un dato como se muestra en este ejemplo, el programa le va a arrojar un error.
+
+**`IMPORTANTE`** El campo ID se pasa por el header, el campo también esta validado de que sea solo numero, en tal caso de que le pase una letra el programa le va a botar un error.
+
 
 
 #### DELETE: `http://"hostname":"port"/inventory/:id`
 
 Este EndPoint permite eliminar los campos de la tabla de inventarios.
+
+**Parámetros de entrada:**
+
+- `id_Inventory` : ID del inventario que va a eliminar **"Number"**.
+
+**`IMPORTANTE`** El campo ID se pasa por el header, el campo también esta validado de que sea solo numero, en tal caso de que le pase una letra el programa le va a botar un error.
 
 
 
@@ -592,12 +720,12 @@ Este EndPoint permite agregar un nuevo préstamo.
 
 **Parámetros de entrada:**
 
-- `Cc_Client` : Cedula del cliente.
-- `End_Date` : Fecha de vencimiento del préstamo.
-- `Status_Loan` : Estado del préstamo.
-- `ID_Inventory` : ID del inventario del libro.
-- `Description` : Descripción del préstamo.
-- `Penalthy` : Costo por vencimiento del préstamo.
+- `Cc_Client` : Cedula del cliente **"Number"**.
+- `End_Date` : Fecha de vencimiento del préstamo **"Date"**.
+- `Status_Loan` : Estado del préstamo **"Number"**.
+- `ID_Inventory` : ID del inventario del libro **"Number"**.
+- `Description` : Descripción del préstamo **"String"**.
+- `Penalthy` : Costo por vencimiento del préstamo **"String"**.
 
 **Ejemplo:**
 
@@ -612,11 +740,24 @@ Este EndPoint permite agregar un nuevo préstamo.
 }
 ```
 
+**`NOTA:`** Todos los campos están validados, tanto las llaves como los parámetros a enviar, si no pasa una llave o un dato como se muestra en este ejemplo, el programa le va a arrojar un error.
+
 
 
 #### PUT: `http://"hostname":"port"/loan/:id`
 
 Este EndPoint permite actualizar los campos de la tabla de prestamos.
+
+**Parámetros de entrada:**
+
+- `Cc_Client` : Cedula del cliente **"Number"**.
+- `End_Date` : Fecha de vencimiento del préstamo **"Date"**.
+- `Status_Loan` : Estado del préstamo **"Number"**.
+- `ID_Inventory` : ID del inventario del libro **"Number"**.
+- `Description` : Descripción del préstamo **"String"**.
+- `Penalthy` : Costo por vencimiento del préstamo **"String"**.
+
+**Ejemplo:**
 
 ```
 {
@@ -629,11 +770,21 @@ Este EndPoint permite actualizar los campos de la tabla de prestamos.
 }
 ```
 
+**`NOTA:`** Todos los campos están validados, tanto las llaves como los parámetros a enviar, si no pasa una llave o un dato como se muestra en este ejemplo, el programa le va a arrojar un error.
+
+**`IMPORTANTE`** El campo ID se pasa por el header, el campo también esta validado de que sea solo numero, en tal caso de que le pase una letra el programa le va a botar un error.
+
 
 
 #### DELETE: `http://"hostname":"port"/loan/:id`
 
 Este EndPoint permite eliminar los campos de la tabla de prestamos.
+
+**Parámetros de entrada:**
+
+- `id_Loan` : ID del préstamo que va a eliminar **"Number"**.
+
+**`IMPORTANTE`** El campo ID se pasa por el header, el campo también esta validado de que sea solo numero, en tal caso de que le pase una letra el programa le va a botar un error.
 
 
 
@@ -667,7 +818,7 @@ Este EndPoint permite agregar un nuevo estado de inventario.
 
 **Parámetros de entrada:**
 
-- `Name` : Nombre del estado del inventario.
+- `Name` : Nombre del estado del inventario **"String"**.
 
 **Ejemplo:**
 
@@ -677,11 +828,19 @@ Este EndPoint permite agregar un nuevo estado de inventario.
 }
 ```
 
+**`NOTA:`** Todos los campos están validados, tanto las llaves como los parámetros a enviar, si no pasa una llave o un dato como se muestra en este ejemplo, el programa le va a arrojar un error.
+
 
 
 #### PUT: `http://"hostname":"port"/status_inventory/:id`
 
 Este EndPoint permite actualizar los campos de la tabla de estado de inventario.
+
+**Parámetros de entrada:**
+
+- `Name` : Nombre del estado del inventario **"String"**.
+
+**Ejemplo:**
 
 ```
 {
@@ -689,11 +848,21 @@ Este EndPoint permite actualizar los campos de la tabla de estado de inventario.
 }
 ```
 
+**`NOTA:`** Todos los campos están validados, tanto las llaves como los parámetros a enviar, si no pasa una llave o un dato como se muestra en este ejemplo, el programa le va a arrojar un error.
+
+**`IMPORTANTE`** El campo ID se pasa por el header, el campo también esta validado de que sea solo numero, en tal caso de que le pase una letra el programa le va a botar un error.
+
 
 
 #### DELETE: `http://"hostname":"port"/status_inventory/:id`
 
 Este EndPoint permite eliminar los campos de la tabla de estado de inventario.
+
+**Parámetros de entrada:**
+
+- `id_Status` : ID del estado que va a eliminar **"Number"**.
+
+**`IMPORTANTE`** El campo ID se pasa por el header, el campo también esta validado de que sea solo numero, en tal caso de que le pase una letra el programa le va a botar un error.
 
 
 
@@ -737,11 +906,19 @@ Este EndPoint permite agregar un nuevo estado de inventario.
 }
 ```
 
+**`NOTA:`** Todos los campos están validados, tanto las llaves como los parámetros a enviar, si no pasa una llave o un dato como se muestra en este ejemplo, el programa le va a arrojar un error.
+
 
 
 #### PUT: `http://"hostname":"port"/status_loan/:id`
 
 Este EndPoint permite actualizar los campos de la tabla de estado de préstamo.
+
+**Parámetros de entrada:**
+
+- `Name` : Nombre del estado del préstamo.
+
+**Ejemplo:**
 
 ```
 {
@@ -749,11 +926,21 @@ Este EndPoint permite actualizar los campos de la tabla de estado de préstamo.
 }
 ```
 
+**`NOTA:`** Todos los campos están validados, tanto las llaves como los parámetros a enviar, si no pasa una llave o un dato como se muestra en este ejemplo, el programa le va a arrojar un error.
+
+**`IMPORTANTE`** El campo ID se pasa por el header, el campo también esta validado de que sea solo numero, en tal caso de que le pase una letra el programa le va a botar un error.
+
 
 
 #### DELETE: `http://"hostname":"port"/status_loan/:id`
 
 Este EndPoint permite eliminar los campos de la tabla de estado de préstamo.
+
+**Parámetros de entrada:**
+
+- `id_Status` : ID del estado que va a eliminar **"Number"**.
+
+**`IMPORTANTE`** El campo ID se pasa por el header, el campo también esta validado de que sea solo numero, en tal caso de que le pase una letra el programa le va a botar un error.
 
 
 
