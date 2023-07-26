@@ -136,9 +136,9 @@ MY_JWT="";
 
 4. Una vez instaladas las dependencias y configurado las variables de entorno, tienes que ejecutar el nodemon de la siguiente manera y también ejecutar el tsc.
 
-`npm run dev;`
+`npm run dev`
 
-`		npm run tsc;`
+`npm run tsc`
 
 
 
@@ -476,7 +476,7 @@ Este EndPoint permite eliminar los campos de la tabla de categorías de libros.
 
 **Parámetros de entrada:**
 
-- `id_Categorie` : Nombre de la categoría del libro **"String"**.
+- `id_Categorie` : ID de la categoría del libro **"Number"**.
 
 **`IMPORTANTE`** El campo ID se pasa por el header, el campo también esta validado de que sea solo numero, en tal caso de que le pase una letra el programa le va a botar un error.
 
@@ -520,8 +520,8 @@ Este EndPoint permite agregar un nuevo cliente.
 
 **Parámetros de entrada:**
 
-- `Cc` : Cedula del cliente.
-- `ID_Admin` : ID del administrador.
+- `Cc` : Cedula del cliente **"Number"**.
+- `ID_Admin` : ID del administrador **"Number"**.
 - `Name` : Nombre del cliente **"String"**.
 - `Phone` : Teléfono del cliente, , se puede agregar el código del país, también toma el dato si lo pasa tipo **"Number, String"** .
 - `Email` : Email del cliente **"String"**.
@@ -732,7 +732,7 @@ Este EndPoint permite agregar un nuevo préstamo.
 ```
 {
     "Cc_Client": 1041566753,
-    "End_Date": "2023-07-19T05:00:00.000Z",
+    "End_Date": "2023-07-19",
     "Status_Loan": 1,
     "ID_Inventory": 2,
     "Description": "Dune",
@@ -762,7 +762,7 @@ Este EndPoint permite actualizar los campos de la tabla de prestamos.
 ```
 {
     "Cc_Client": 1041566753,
-    "End_Date": "2023-07-19T05:00:00.000Z",
+    "End_Date": "2023-07-19",
     "Status_Loan": 1,
     "ID_Inventory": 2,
     "Description": "Dune",
