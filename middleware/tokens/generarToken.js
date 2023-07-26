@@ -17,6 +17,7 @@ const generarToken = async(req, res, next) => {
     .setExpirationTime("10h")
     .sign(encoder.encode(process.env.MY_JWT));
 
+    res.send(jwt)
     next();
 }
 
